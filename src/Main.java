@@ -2,35 +2,37 @@
 public class Main {
     static Employee[] employees = new Employee[10];
 
-    static void printEmployee() {
+    public void printEmployee() {
         System.out.print("список всех сотрудников:");
         System.out.println();
         for (Employee i : employees) {
             System.out.println(i);
         }
-        }
-        static int sumSalary () {
-            int sum = 0;
-            for (Employee employees : employees) {
-                if (employees != null) {
-                    sum += employees.getSalary();
-                }
-                }
-            return sum;
-            }
+    }
 
-    static Employee minSalary() {
+    public int sumSalary() {
+        int sum = 0;
+        for (Employee employees : employees) {
+            if (employees != null) {
+                sum += employees.getSalary();
+            }
+        }
+        return sum;
+    }
+
+    public Employee minSalary() {
         Employee min = employees[0];
-        for (int i = 1; i < employees.length ; i++) {
+        for (int i = 1; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getSalary() < min.getSalary()) {
                 min = employees[i];
             }
         }
         return min;
     }
-    static Employee maxSalary() {
+
+    public Employee maxSalary() {
         Employee max = employees[0];
-        for (int i = 1; i < employees.length ; i++) {
+        for (int i = 1; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getSalary() > max.getSalary()) {
                 max = employees[i];
             }
@@ -38,7 +40,7 @@ public class Main {
         return max;
     }
 
-    static double midSalary() {
+    public double midSalary() {
         double mid = 0;
         double sum = 0;
         for (Employee employees : employees) {
@@ -50,7 +52,7 @@ public class Main {
         return mid;
     }
 
-    static void printName() {
+    public void printName() {
         System.out.print("Имена всех сотрудников:");
         System.out.println();
         for (Employee i : employees) {
@@ -58,6 +60,90 @@ public class Main {
         }
     }
 
+    public void indexSalary(Employee employee[], double index) {
+        for (Employee e : employees) {
+            if (employees != null) {
+                e.setSalary(e.getSalary() + e.getSalary() * index / 100);
+            }
+        }
+    }
+
+    public static Employee employeeWithMinSalary(Employee employees[], int department) {
+        Employee employeeWithMinSalary = null;
+        for (Employee e : employees) {
+            if (e.getDepartment() == department && (employeeWithMinSalary == null || e.getSalary() < employeeWithMinSalary.getSalary())) {
+                employeeWithMinSalary = e;
+            }
+        }
+        return employeeWithMinSalary;
+    }
+
+    public static Employee employeeWithMaxSalary(Employee[] employees, int department) {
+        Employee employeeWithMaxSalary = null;
+        for (Employee e : employees) {
+            if (e.getDepartment() == department
+                    && (employeeWithMaxSalary == null || e.getSalary() > employeeWithMaxSalary.getSalary())) {
+                employeeWithMaxSalary = e;
+            }
+        }
+        return employeeWithMaxSalary;
+    }
+
+
+    public static double sumSalaryInDepartment(int department) {
+        double sum = 0;
+        for (Employee e : employees) {
+            if (e.getDepartment() == department) {
+                sum += e.getSalary();
+            }
+        }
+        return sum;
+    }
+
+    public static double midSalaryInDepartment(int department) {
+        double sum = 0;
+        int quantity = 0;
+        for (Employee e : employees) {
+            if (e.getDepartment() == department) {
+                sum += e.getSalary();
+                quantity++;
+            }
+        }
+        return sum / quantity;
+    }
+
+    public static void indexSalaryInDepartment(Employee[] employees, int department, double percent) {
+        for (Employee e : employees) {
+            if (e.getDepartment() == department) {
+                e.setSalary(e.getSalary() + e.getSalary() * percent / 100);
+            }
+        }
+    }
+
+    public static void printNameInDepartment(int department) {
+        System.out.println("Сотрудники отдела" + department + ":");
+        for (Employee e : employees) {
+            if (e.getDepartment() == department) {
+                System.out.println(e.getName() + " " + e.getSalary() + " " + e.getId());
+            }
+        }
+    }
+
+    public static void salaryMinThanIt(int salary) {
+        for (Employee e : employees) {
+            if (e.getSalary() < salary) {
+                System.out.println("id = " + e.getId() + " name = " + e.getName() + " salary = " + e.getSalary());
+            }
+        }
+    }
+
+    public static void salaryMaxThanIt(int salary) {
+        for (Employee e : employees) {
+            if (e.getSalary() >= salary) {
+                System.out.println("id = " + e.getId() + " name = " + e.getName() + " salary = " + e.getSalary());
+            }
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -79,5 +165,17 @@ public class Main {
         System.out.println("maxSalary() = " + maxSalary());
         System.out.println("midSalary() = " + midSalary());
         printName();
+        indexSalary(employees, 50);
+        printEmployee();
+        System.out.println(employeeWithMinSalary(employees, 4));
+        System.out.println(employeeWithMaxSalary(employees, 2));
+        System.out.println("sumSalaryInDepartment(3) = " + sumSalaryInDepartment(3));
+        System.out.println("midSalaryInDepartment(5) = " + midSalaryInDepartment(5));
+        System.out.println();
+        indexSalaryInDepartment(employees, 1, 10);
+        printEmployee();
+        printNameInDepartment(1);
+        salaryMinThanIt(30000);
+        salaryMaxThanIt(40000);
     }
 }
