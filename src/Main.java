@@ -1,17 +1,35 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
 public class Main {
+
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        EmployeeBook employeeBook = new EmployeeBook();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        employeeBook.add("Анисимов Сергей Иванович", 1, 15_000);
+        employeeBook.add("Боровикин Александр Петрович", 1, 17_000);
+        employeeBook.add("Венский Михаил Игнатьевич", 2, 19_000);
+        employeeBook.add("Гроздьев Виктор Петрович", 2, 22_000);
+        employeeBook.add("Добровольский Виталий Николаевич", 3, 24_000);
+        employeeBook.add("Елкин Василий Ильич", 3, 24_000);
+        employeeBook.add("Железняк Андрей Александрович", 4, 31_000);
+        employeeBook.add("Зотов Юрий Сергеевич", 4, 30_000);
+        employeeBook.add("Игнатов Лев Романович", 5, 27_000);
+        employeeBook.add("Калинин Евгений Денисович", 5, 28_000);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        employeeBook.printEmployee();
+        System.out.println();
+        employeeBook.deleteName("Боровикин Александр Петрович");
+        employeeBook.printEmployee();
+        System.out.println();
+        employeeBook.deleteId(5);
+        employeeBook.printEmployee();
+        System.out.println();
+        employeeBook.changeSalaryName("Елкин Василий Ильич", 27_000);
+        employeeBook.printEmployee();
+        System.out.println();
+        employeeBook.changeIdName("Калинин Евгений Денисович", 1);
+        employeeBook.printEmployee();
+        System.out.println();
+        employeeBook.printNameAndDepartment();
+
     }
 }
